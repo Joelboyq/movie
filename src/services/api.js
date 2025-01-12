@@ -22,13 +22,22 @@ export const getMovieDetails = async (id) => {
     return response.data;
 };
 
-// Fetch trending movies
+// Function to fetch trending movies
 export const getTrendingMovies = async (page = 1) => {
-    const response = await apiClient.get('/trending/movie/week', {
-        params: { page },
-    });
-    return response.data;
-};
+ 
+        const options = {
+            method: 'GET',
+            headers: {
+              accept: 'application/json',
+              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYTljNTY5NjEzMmYxMTRhY2ExN2I0NTUxZDMwMTg0MyIsIm5iZiI6MTczNjU5NTgzMi44MzksInN1YiI6IjY3ODI1OTc4YzVkMmU5NmUyNjdiNjk3NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.z8stMyx2T-eCgnf4tEzXuEJZEyV7haUL8PUVs8Xporc'
+            }
+          };
+          
+          fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
+            .then(res => res.json())
+            .then(res => console.log(res))
+            .catch(err => console.error(err));
+  };
 
 // Fetch movie credits (cast and crew)
 export const getMovieCredits = async (id) => {
