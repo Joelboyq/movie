@@ -2,13 +2,31 @@ import axios from 'axios';
 
 // Create an instance of Axios with default base URL
 const apiClient = axios.create({
-    baseURL: 'https://api.themoviedb.org/3',
+    baseURL: 'https://api.themoviedb.org/3/',
     params: {
-        apikey: import.meta.env.VITE_FILMO_API_KEY,
+        apikey: import.meta.env.VITE_FILMO_API_TOKEN,
     },
+    headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${import.meta.env.VITE_FILMO_API_TOKEN}` 
+      }
 });
 
-console.log(import.meta.env.VITE_FILMO_API_KEY);
+// Handle responses
+apiClient.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      if (error.response?.status === 401) {
+        console.error('Unauthorized - Invalid Token');
+        // Implement token refresh logic or redirect to login
+      }
+      return Promise.reject(error);
+    }
+  );
+  
+  export default apiClient;
+
+// console.log(import.meta.env.VITE_FILMO_API_KEY);
 
 // Fetch movies based on search query
 export const searchMovies = async (query, page = 1) => {
@@ -25,21 +43,18 @@ export const getMovieDetails = async (id) => {
 };
 
 // Function to fetch trending movies
-export const getTrendingMovies = async (page = 1) => {
- 
-        const options = {
-            method: 'GET',
-            headers: {
-              accept: 'application/json',
-              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYTljNTY5NjEzMmYxMTRhY2ExN2I0NTUxZDMwMTg0MyIsIm5iZiI6MTczNjU5NTgzMi44MzksInN1YiI6IjY3ODI1OTc4YzVkMmU5NmUyNjdiNjk3NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.z8stMyx2T-eCgnf4tEzXuEJZEyV7haUL8PUVs8Xporc'
-  }
-          };
-          
-          fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
-            .then(res => res.json())
-            .then(res => console.log(res))
-            .catch(err => console.error(err));
-  };
+export const getTrendingMovies = async () => {
+    try {
+        const response = await apiClient.get('/trending/movie/day', {
+            params: { language: 'en-US' },
+        });
+        console.log('===========================',response);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
 
 // Fetch movie credits (cast and crew)
 export const getMovieCredits = async (id) => {

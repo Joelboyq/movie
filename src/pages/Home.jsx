@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getMovieDetails, getTrendingMovies } from "../services/api";
 import MovieList from "../components/MovieList";
@@ -19,7 +19,8 @@ const Home = () => {
   useEffect(() => {
     fetchDeveloperPicks();
     fetchTrendingMoviesPreview();
-    clearSearch(); // Clear previous search when returning to home
+    clearSearch()
+   // Clear previous search when returning to home
   }, []);
 
   // Fetch developer's picks movies details
@@ -28,6 +29,7 @@ const Home = () => {
       const picks = await Promise.all(
         developerPicks.map((id) => getMovieDetails(id))
       );
+      console.log(picks);
       setDevPicks(picks);
     } catch (error) {
       console.error("Error fetching Developer's Picks: ", error);
@@ -38,8 +40,9 @@ const Home = () => {
   // Fetch trending movies preview
   const fetchTrendingMoviesPreview = async () => {
     try {
-      const result = await getTrendingMovies(1);
-      setTrendingMovies(result.results.slice(0, TRENDING_PREVIEW_COUNT));
+      const result = await getTrendingMovies();
+      console.log('===========================',result);
+      setTrendingMovies(result?.results.slice(0, TRENDING_PREVIEW_COUNT));
     } catch (error) {
       console.error("Error fetching trending movies: ", error);
       setError("Failed to fetch trending movies. Please try again.");
@@ -83,7 +86,7 @@ const Home = () => {
       </div>
       <MovieList movies={trendingMovies} />
 
-      <h2 className="text-xl font-bold mt-8 mb-4">Developer's Pick</h2>
+      <h2 className="text-xl font-bold mt-8 mb-4">Developers Pick</h2>
       <MovieList movies={devPicks} />
     </div>
   );
