@@ -4,7 +4,7 @@ import axios from 'axios';
 const apiClient = axios.create({
     baseURL: 'https://api.themoviedb.org/3',
     params: {
-        api_key: import.meta.env.VITE_TREMOVIES_API_KEY,
+        apikey: import.meta.env.VITE_FILMO_API_KEY,
     },
 });
 
