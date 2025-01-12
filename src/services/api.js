@@ -8,6 +8,8 @@ const apiClient = axios.create({
     },
 });
 
+console.log(import.meta.env.VITE_FILMO_API_KEY);
+
 // Fetch movies based on search query
 export const searchMovies = async (query, page = 1) => {
     const response = await apiClient.get('/search/movie', {

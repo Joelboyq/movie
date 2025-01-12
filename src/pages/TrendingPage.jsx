@@ -34,7 +34,9 @@ const TrendingPage = () => {
     setError(null);
     try {
       const result = await getTrendingMovies(page);
-      setMovies(result.results || []);
+      //
+      console.log("here is the results",result)
+      setMovies(result?.results);
       setTotalPages(result.total_pages || 1);
     } catch (error) {
       console.error("Error fetching trending movies: ", error);
