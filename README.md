@@ -18,7 +18,7 @@ Filmo: is a movie search application built with React.
 10. [Deployment](#deployment)
 11. [License](#license)
 
-## Features
+## Featuress
 
 - **Movie Search**: Users can search for movies by title, with pagination.
 - **Trending Movies**: Displays a curated list of currently trending movies.
