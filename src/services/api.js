@@ -32,7 +32,7 @@ export const getTrendingMovies = async (page = 1) => {
             headers: {
               accept: 'application/json',
               Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYTljNTY5NjEzMmYxMTRhY2ExN2I0NTUxZDMwMTg0MyIsIm5iZiI6MTczNjU5NTgzMi44MzksInN1YiI6IjY3ODI1OTc4YzVkMmU5NmUyNjdiNjk3NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.z8stMyx2T-eCgnf4tEzXuEJZEyV7haUL8PUVs8Xporc'
-            }
+  }
           };
           
           fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
