@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="bg-accent text-background py-4 px-6 mt-auto">
       <div className="container mx-auto text-center">
         <p className="text-lg font-semibold mb-2">
-          TREMOVIES: Popular Movies Database Explorer
+          Filmo Movies Explorer
         </p>
         <p className="text-sm">
           Powered by{" "}
@@ -19,7 +19,7 @@ const Footer = () => {
           </a>
         </p>
         <p className="text-sm mt-1">
-          Developed by <span className="font-medium">Mushimiyimana Desire</span>
+          Developed by <span className="font-medium">Joel Maniriho</span>
         </p>
       </div>
     </footer>
