@@ -9,10 +9,10 @@ module.exports = {
     extend: {
       colors: {
         'text': '#040316',
-        'background': '#fce3de',
-        'primary': '#bc3c71',
+        'background': '#acdbfc',
+        'primary': '#1b79b2',
         'secondary': '#7abbfc',
-        'accent': '#1a0057',
+        'accent': '#146893',
       },
     },
   },
