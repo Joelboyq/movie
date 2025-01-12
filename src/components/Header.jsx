@@ -87,7 +87,7 @@ const Header = () => {
           isSearchExpanded && isSmallScreen ? "hidden" : "block"
         } sm:block`}
       >
-        TREMOVIES
+        Filmo
       </Link>
       <div className="flex items-center space-x-4 flex-grow justify-end">
         <div
